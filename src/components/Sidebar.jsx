@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
-import { signOut } from 'firebase/auth'
-import { auth } from '../firebase'
+import { logout } from '../auth'
 
 const navItems = [
   { to: '/',           icon: '⊞', label: 'Dashboard' },
@@ -11,17 +10,15 @@ const navItems = [
   { to: '/admins',     icon: '👑', label: 'Admins' },
 ]
 
-export default function Sidebar({ user, reportCount }) {
+export default function Sidebar({ reportCount, onLogout }) {
   const navigate = useNavigate()
 
-  async function handleLogout() {
-    await signOut(auth)
+  function handleLogout() {
+    logout()
+    onLogout?.()
+    window.dispatchEvent(new Event('admin-auth-change'))
     navigate('/login')
   }
-
-  const initials = user?.displayName
-    ? user.displayName.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
-    : user?.email?.[0]?.toUpperCase() ?? 'A'
 
   return (
     <aside className="sidebar">
@@ -57,15 +54,15 @@ export default function Sidebar({ user, reportCount }) {
           onClick={handleLogout}
         >
           <span className="nav-icon">⏻</span>
-          Sign Out
+          Выйти
         </button>
       </nav>
 
       <div className="sidebar-footer">
         <div className="sidebar-user">
-          <div className="avatar">{initials}</div>
+          <div className="avatar">A</div>
           <div className="user-info">
-            <div className="user-name">{user?.displayName ?? user?.email ?? 'Admin'}</div>
+            <div className="user-name">admin</div>
             <div className="user-role">Administrator</div>
           </div>
         </div>
