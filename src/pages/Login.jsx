@@ -41,8 +41,8 @@ export default function Login() {
         {error && <div className="login-error">{error}</div>}
 
         <p style={{ marginTop: 24, fontSize: 11, color: 'var(--text-muted)', lineHeight: 1.6 }}>
-          Access is granted to authorized administrators only.<br/>
-          Firebase project: <strong style={{ color: 'var(--purple-bright)' }}>tictactoeonline-9f22d</strong>
+          Доступ только для авторизованных администраторов.<br/>
+          Firebase: <strong style={{ color: 'var(--purple-bright)' }}>tictactoeonline-9f22d</strong>
         </p>
       </div>
     </div>
