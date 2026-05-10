@@ -11,6 +11,7 @@ import Players from './pages/Players'
 import Rooms from './pages/Rooms'
 import Reports from './pages/Reports'
 import Statistics from './pages/Statistics'
+import Admins from './pages/Admins'
 
 const PAGE_TITLES = {
   '/':           'Dashboard',
@@ -18,6 +19,7 @@ const PAGE_TITLES = {
   '/rooms':      'Rooms',
   '/reports':    'Reports',
   '/statistics': 'Statistics',
+  '/admins':     'Admins',
 }
 
 function ProtectedLayout({ user }) {
@@ -52,6 +54,7 @@ function ProtectedLayout({ user }) {
             <Route path="/rooms"      element={<Rooms />} />
             <Route path="/reports"    element={<Reports />} />
             <Route path="/statistics" element={<Statistics />} />
+            <Route path="/admins"     element={<Admins />} />
             <Route path="*"           element={<Navigate to="/" replace />} />
           </Routes>
         </div>

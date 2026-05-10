@@ -8,6 +8,7 @@ const navItems = [
   { to: '/rooms',      icon: '🎮', label: 'Rooms' },
   { to: '/reports',    icon: '🚩', label: 'Reports' },
   { to: '/statistics', icon: '📊', label: 'Statistics' },
+  { to: '/admins',     icon: '👑', label: 'Admins' },
 ]
 
 export default function Sidebar({ user, reportCount }) {
