@@ -186,7 +186,18 @@ export default function Reports() {
               <tbody>
                 {filtered.map(r => (
                   <tr key={r.id}>
-                    <td className="td-main">{r.reporter || '—'}</td>
+                    <td className="td-main">
+                      <div style={{ fontWeight: 600 }}>{r.reporter || '—'}</div>
+                      {r.email && (
+                        <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
+                          <a href={`mailto:${r.email}?subject=Re: ${encodeURIComponent(r.subject || 'Your support request')}`}
+                             style={{ color: '#818cf8', textDecoration: 'none' }}
+                             title="Click to reply via email">
+                            ✉ {r.email}
+                          </a>
+                        </div>
+                      )}
+                    </td>
                     <td>
                       <span style={{ fontSize: 12, background: 'rgba(139,92,246,0.1)', border: '1px solid rgba(139,92,246,0.2)', borderRadius: 5, padding: '2px 8px', color: 'var(--purple-bright)' }}>
                         {r.category || 'Other'}
@@ -204,6 +215,14 @@ export default function Reports() {
                     <td style={{ fontSize: 12, color: 'var(--text-muted)' }}>{formatTime(r.createdAt)}</td>
                     <td>
                       <div className="actions">
+                        {r.email && (
+                          <a href={`mailto:${r.email}?subject=Re: ${encodeURIComponent(r.subject || 'Your support request')}&body=${encodeURIComponent('Hi ' + (r.reporter || '') + ',\n\n')}`}
+                             className="btn btn-sm"
+                             style={{ background: 'rgba(99,102,241,0.15)', border: '1px solid rgba(99,102,241,0.3)', color: '#818cf8', textDecoration: 'none' }}
+                             title={r.email}>
+                            ✉ Reply
+                          </a>
+                        )}
                         {r.status !== 'resolved' && (
                           <button className="btn btn-sm btn-success" onClick={() => resolve(r)}>✓ Resolve</button>
                         )}
